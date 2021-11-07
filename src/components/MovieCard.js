@@ -91,7 +91,7 @@ function MovieCard() {
           rating: 5,
         },
     ];
-    
+
 
     const [Movie,setMovie]=useState(moviesList)
     const [input,setInput] =useState('')
@@ -99,15 +99,13 @@ function MovieCard() {
     const changeHandler = e =>{
             setInput(e.target.value)
     }
-    const add = e => [
-      setMovie([...moviesList,e.target.value])
-    ]
+ 
 
     return (
         <div>
             <Filter Movie={Movie} changeHandler={changeHandler} input={input}/>
+            <Add movie={Movie} changeHandler={changeHandler} />
             <MovieList Movie={Movie}/>
-            <Add movie={Movie} changeHandler={changeHandler} add={add} />
         </div>
     )
 }
