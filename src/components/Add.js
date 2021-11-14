@@ -1,30 +1,33 @@
-import React,{useState} from 'react'
+import React , {useState}from 'react'
+import MovieList from './MovieList'
 
-function Add({changeHandler,movie}) {
-    const [addMovie, setAddMovie]=useState({
-        title: "",
-        description:"",
-        posterURL: "",
-        rating:NaN,
-    })
 
-    const add = ()=> [
-        setAddMovie([...movie,{
-            title: "",
-            description:"",
-            posterURL: "",
-            rating:NaN,
+function Add({Movie}) {
+    const [newMovie,setNewMovie] =useState(Movie)
+    const [title,setTitle]=useState('')
+    const [posterURL,setPosterURL]=useState('')
+    const [description,setDescription]=useState('')
+    const [rating,setRating]=useState('')
+    
+    
+    const addMovie = () => {
+        setNewMovie([...newMovie,{
+            title: title,
+            posterURL: posterURL,
+            description: description,
+            rating: rating  
         }])
-      ]
+      }
+
     return (
         <div>
-            <form onSubmit={add}>
-                <input type="text" name="title" placeholder="Movie Title....."/>
-                <input type="text" name="posterURL" placeholder="Movie Image Link......"/>
-                <input type="text" name="description" placeholder="Description......"/>
-                <input type="text" name="rating" placeholder="Rating......."/>
-                <button type="submit">ADD MOVIE</button>
-            </form>
+            <MovieList Movie={newMovie}/>
+            <h3>ADD MOVIE HERE</h3>
+            <input type="text" value={title} onChange={(e)=>{setTitle(e.target.value)}} placeholder="Movie Title"/>
+            <input type="text" value={posterURL} onChange={(e)=>{setPosterURL(e.target.value)}}placeholder="Movie Image Link"/>
+            <input type="text" value={description} onChange={(e)=>{setDescription(e.target.value)}} placeholder="Movie Description"/>
+            <input type="text" value={rating} onChange={(e)=>{setRating(e.target.value)}} placeholder="Movie Rating"/>
+            <button className="btn btn-regular" type='submit' onClick={addMovie}>ADD MOVIE</button>
         </div>
     )
 }

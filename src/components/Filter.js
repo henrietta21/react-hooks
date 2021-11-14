@@ -1,7 +1,9 @@
 import React from 'react'
 
-function Filter({Movie,changeHandler,input}) {
-    
+function Filter({Movie,input,setInput}) {
+    const changeHandler = (e) =>{
+        setInput(e.target.value)
+      }
     return (
         <div>
            <input type="text" placeholder='Search......' className="searchInput" onChange={changeHandler}/>   
